@@ -1,11 +1,20 @@
-import React from 'react'
+import React, { Component } from "react";
 
-const Clock = () => {
+const TimeInput = props => (
+  <div className="input-field">
+    <input type={props.type} name={props.name} />
+    <label htmlFor={props.name}>{props.label}</label>
+  </div>
+);
+export default class Clock extends Component {
+  render() {
     return (
-        <div>
-            <input placeholder='00:00'/>
+      <div>
+        <div className="row">
+          <TimeInput name={"session_timer"} type={"text"} label={"Session Duration"} />
+          <TimeInput name={"break_timer"} type={"text"} label={"Break Duration"} />
         </div>
-    )
+      </div>
+    );
+  }
 }
-
-export default Clock;
