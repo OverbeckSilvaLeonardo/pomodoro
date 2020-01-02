@@ -18,23 +18,30 @@ const TimerLabel = props => (
   </div>
 );
 
-const TimerStart = props => (
-  <a className="col s12 waves-effect waves-light btn-large">{props.title}</a>
-);
+const TimerButton = props => {
+  let className = `col s12 waves-effect waves-light btn ${props.is_active ? 'red' : ''}`;
+  let title = props.is_active ? 'Stop' : 'Start';
+
+  return (
+    <a className={className} onClick={props.onClickCallBack}>{title}</a>
+  );
+}
 export default class Clock extends Component {
   constructor() {
     super();
 
     this.state = {
+      is_active: false,
       session_duration: "00:00",
       break_duration: "00:00",
     };
   }
 
-  updateTimer = event => {
-    let { name, value } = event.target;
-    this.setState({ ...this.state, [name]: value });
-  };
+  handleActivation = () =>
+    this.setState({ ...this.state, is_active: !this.state.is_active });
+
+  updateTimer = event =>
+    this.setState({ ...this.state, [event.target.name]: event.target.value });
 
   render = () => (
     <>
@@ -53,13 +60,14 @@ export default class Clock extends Component {
           onCangeCallback={this.updateTimer}
         />
       </div>
+
       <div className="row">
         <TimerLabel time={this.state.session_duration} />
         <TimerLabel time={this.state.break_duration} />
       </div>
 
       <div className="row">
-        <TimerStart title={"Start"} />
+        <TimerButton is_active={this.state.is_active} onClickCallBack={this.handleActivation}/>
       </div>
     </>
   );
