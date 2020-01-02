@@ -1,7 +1,8 @@
 import React, { Component } from "react";
+import TimerButton from './TimerButton';
 import TimerInput from './TimerInput';
 import TimerLabel from './TimerLabel';
-import TimerButton from './TimerButton';
+import TimeValidator from '../../lib/TimeValidator';
 
 export default class Clock extends Component {
   constructor() {
@@ -14,8 +15,15 @@ export default class Clock extends Component {
     };
   }
 
-  handleActivation = () =>
+  handleActivation = () => {
+
+    let { session_duration, break_duration } = this.state;
+
+    TimeValidator.validateTime(session_duration);
+    TimeValidator.validateTime(break_duration);
+
     this.setState({ ...this.state, is_active: !this.state.is_active });
+  }
 
   updateTimer = event =>
     this.setState({ ...this.state, [event.target.name]: event.target.value });
