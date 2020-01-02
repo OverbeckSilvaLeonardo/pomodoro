@@ -1,31 +1,8 @@
 import React, { Component } from "react";
+import TimerInput from './TimerInput';
+import TimerLabel from './TimerLabel';
+import TimerButton from './TimerButton';
 
-const TimerInput = props => (
-  <div className="input-field col s6">
-    <input
-      type={props.type}
-      name={props.name}
-      onChange={props.onCangeCallback}
-    />
-
-    <label htmlFor={props.name}>{props.label}</label>
-  </div>
-);
-
-const TimerLabel = props => (
-  <div className="col s6">
-    <h2 className="center-align">{props.time}</h2>
-  </div>
-);
-
-const TimerButton = props => {
-  let className = `col s12 waves-effect waves-light btn ${props.is_active ? 'red' : ''}`;
-  let title = props.is_active ? 'Stop' : 'Start';
-
-  return (
-    <a className={className} onClick={props.onClickCallBack}>{title}</a>
-  );
-}
 export default class Clock extends Component {
   constructor() {
     super();

@@ -7,10 +7,17 @@ import Clock from '../../components/Clock';
 const Home = () => {
   return (
     <div className="container">
-      <h1>POMODORO</h1>
+      <h1>POMODORO TIMER</h1>
+      <blockquote style={styles.blockquote}>By Leonardo Overbeck da Silva</blockquote>
       <Clock />
     </div>
   );
+}
+
+const styles = {
+  blockquote: {
+    borderLeft: '5px solid #1a237e',
+  }
 }
 
 export default Home;
