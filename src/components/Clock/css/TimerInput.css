@@ -1,0 +1,17 @@
+.input-field input[type=text] {
+    border-bottom: 1px solid #1a237e;
+}
+
+.input-field input[type=text]:focus {
+    border-bottom: 1px solid #1a237e !important;
+    box-shadow: none !important;
+}
+
+.input-field label {
+    color: #1a237e;
+}
+
+.input-field input[type=text]:focus + label {
+    color: #1a237e !important;
+    font-weight: bold !important;
+}

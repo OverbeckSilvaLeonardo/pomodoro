@@ -1,4 +1,5 @@
 import React from "react";
+import './css/TimerInput.css';
 
 const TimerInput = props => (
   <div className="input-field col s6">
