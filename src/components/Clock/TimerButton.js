@@ -8,9 +8,11 @@ const TimerButton = props => {
   let title = props.is_active ? "Stop" : "Start";
 
   return (
-    <button className={className} onClick={props.onClickCallBack}>
-      {title}
-    </button>
+    <div className="row">
+      <button className={className} onClick={props.onClickCallBack}>
+        {title}
+      </button>
+    </div>
   );
 };
 
