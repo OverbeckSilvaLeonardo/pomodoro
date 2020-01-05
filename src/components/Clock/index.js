@@ -10,8 +10,8 @@ export default class Clock extends Component {
 
     this.state = {
       is_active: false,
-      session_duration: "00:00",
-      break_duration: "00:00",
+      session_duration: "",
+      break_duration: "",
     };
   }
 
@@ -48,11 +48,15 @@ export default class Clock extends Component {
               defaultValue={session_duration}
             />
 
+            <TimerLabel time={session_duration} />
+
             <TimerButton
               title='Clear'
               className=' col s12 waves-effect waves-light btn indigo darken-4'
-              onClickCallBack={() => this.updateTimer('session_duration', '00:00')}
+              onClickCallBack={() => this.updateTimer('session_duration', '')}
             />
+
+
           </div>
 
           <div className='col s6'>
@@ -64,19 +68,14 @@ export default class Clock extends Component {
               defaultValue={break_duration}
             />
 
+            <TimerLabel time={break_duration} />
+  
             <TimerButton
               title='Clear'
               className='col s12 waves-effect waves-light btn indigo darken-4'
-              onClickCallBack={() => this.updateTimer('break_duration', '00:00')}
+              onClickCallBack={() => this.updateTimer('break_duration', '')}
             />
           </div>
-
-
-        </div>
-
-        <div className="row">
-          <TimerLabel time={session_duration} />
-          <TimerLabel time={break_duration} />
         </div>
 
         <div className="row">
