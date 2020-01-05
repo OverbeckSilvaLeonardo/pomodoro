@@ -24,8 +24,13 @@ export default class Clock extends Component {
     this.setState({ ...this.state, is_active: !this.state.is_active });
   };
 
-  updateTimer = (name, value) =>
+  updateTimer = (name, value) => {
+
+    if (value.length === 2)
+      value = `${value}:`;
+
     this.setState({ ...this.state, [name]: value });
+  }
 
   render = () => {
     let { session_duration, break_duration, is_active } = this.state;
@@ -33,21 +38,40 @@ export default class Clock extends Component {
     return (
       <>
         <div className="row">
-          <TimerInput
-            name={"session_duration"}
-            type={"text"}
-            label={"Session Duration"}
-            onCangeCallback={this.updateTimer}
-            value={session_duration}
-          />
 
-          <TimerInput
-            name={"break_duration"}
-            type={"text"}
-            label={"Break Duration"}
-            onCangeCallback={this.updateTimer}
-            value={break_duration}
-          />
+          <div className='col s6'>
+            <TimerInput
+              name={"session_duration"}
+              type={"text"}
+              label={"Session Duration"}
+              onCangeCallback={this.updateTimer}
+              defaultValue={session_duration}
+            />
+
+            <TimerButton
+              title='Clear'
+              className=' col s12 waves-effect waves-light btn indigo darken-4'
+              onClickCallBack={() => this.updateTimer('session_duration', '00:00')}
+            />
+          </div>
+
+          <div className='col s6'>
+            <TimerInput
+              name={"break_duration"}
+              type={"text"}
+              label={"Break Duration"}
+              onCangeCallback={this.updateTimer}
+              defaultValue={break_duration}
+            />
+
+            <TimerButton
+              title='Clear'
+              className='col s12 waves-effect waves-light btn indigo darken-4'
+              onClickCallBack={() => this.updateTimer('break_duration', '00:00')}
+            />
+          </div>
+
+
         </div>
 
         <div className="row">
@@ -55,10 +79,16 @@ export default class Clock extends Component {
           <TimerLabel time={break_duration} />
         </div>
 
-        <TimerButton
-          is_active={is_active}
-          onClickCallBack={this.handleActivation}
-        />
+        <div className="row">
+          <TimerButton
+            className={
+              `col s12 waves-effect waves-light btn-large ${is_active ? "red darken-1" : "indigo darken-4"}`
+            }
+            title={is_active ? "Stop" : "Start"}
+            onClickCallBack={() => this.handleActivation()}
+          />
+        </div>
+
       </>
     );
   };
